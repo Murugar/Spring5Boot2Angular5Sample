@@ -1,0 +1,46 @@
+<div class="example-container">
+
+  <mat-toolbar color="primary" class="example-toolbar">
+    <h1 class="example-app-name">Spring5 Boot2 Angular5</h1>
+  </mat-toolbar>
+
+  <mat-card>
+
+    <mat-card-title>
+      Show Started
+      <mat-slide-toggle [checked]="showCompleted" (change)="onChange()"></mat-slide-toggle>
+
+      <div style="float: right">
+        <button (click)="onMarkComplete(todoNodeList.selectedOptions.selected); todoNodeList.deselectAll();" mat-raised-button color="primary">
+          <mat-icon aria-label="Mark selected todo(s) completed">done</mat-icon>
+          <span>Complete</span>
+        </button>
+        <button (click)="onDelete(todoNodeList.selectedOptions.selected);" mat-raised-button color="warn">
+          <mat-icon aria-label="Deleted selected todo(s)">delete</mat-icon>
+          <span>Delete</span>
+        </button>
+      </div>
+    </mat-card-title>
+
+    <mat-card-subtitle>
+      <p>
+        Options selected: {{todoNodeList.selectedOptions.selected.length}}
+      </p>
+    </mat-card-subtitle>
+
+    <mat-card-content>
+      <mat-selection-list #todoNodeList>
+        <ng-container *ngFor="let todo of todoList">
+          <mat-list-option *ngIf="!showCompleted || (showCompleted && !todo.completed )" [value]="todo.id" [ngClass]="{ 'completed-todo': todo.completed }">
+            <span>{{todo.title}}</span>
+          </mat-list-option>
+        </ng-container>
+      </mat-selection-list>
+    </mat-card-content>
+  </mat-card>
+
+  <button (click)="onAddClick()" mat-fab color="primary" class="add-button">
+    <mat-icon aria-label="Example icon-button with a heart icon">Add</mat-icon>
+  </button>
+
+</div>
