@@ -20,7 +20,7 @@ public class MainServiceImpl implements MainService {
 
 	@Override
 	public List<ToDo> listAll() {
-        Sort sortByCreatedAtDesc = new Sort(Sort.Direction.ASC, "id");
+        Sort sortByCreatedAtDesc = Sort.by(Sort.Direction.ASC, "id");
         return todoRepository.findAll(sortByCreatedAtDesc);
 	}
 
